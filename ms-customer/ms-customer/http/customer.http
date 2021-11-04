@@ -1,0 +1,18 @@
+###REGISTRAR CLIENTE
+POST http://localhost:6945/v1/api/customer/save
+Content-Type: application/json
+
+{
+  "name": "Rebeca",
+  "lastName": "Salinas",
+  "email": "rbsalinas@gmail.com"
+}
+
+###OBTENER TODOS LOS CLIENTES
+GET http://localhost:6945/v1/api/customer/all
+Accept: application/json
+
+###OBTENER CLIENTE POR ID
+GET http://localhost:6945/v1/api/customer?customerId=1
+Accept: application/json
+
