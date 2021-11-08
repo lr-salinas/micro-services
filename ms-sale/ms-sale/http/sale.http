@@ -1,0 +1,17 @@
+###COMPRAR PRODUCTO
+POST http://localhost:8743/v1/api/sale/buy
+Content-Type: application/json
+
+{
+  "quantity": 1,
+  "status": true
+}
+
+###VER PRODUCTOS COMPRADOS POR UN CLIENTE
+GET http://localhost:8743/v1/api/sale/1
+Accept: application/json
+
+
+###ELIMINAR PRODUCTOS COMPRADOS DE UN USUARIO
+DELETE http://localhost:8743/v1/api/sale/delete/1
+Accept: application/json

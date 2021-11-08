@@ -8,11 +8,30 @@ Content-Type: application/json
   "email": "rbsalinas@gmail.com"
 }
 
+###REGISTRAR CLIENTE PASANDO POR GATEWAY
+POST http://localhost:8181/ms-customer/v1/api/customer/save
+Content-Type: application/json
+
+{
+  "name": "Rebeca",
+  "lastName": "Salinas",
+  "email": "rbsalinas@gmail.com"
+}
+
+
 ###OBTENER TODOS LOS CLIENTES
 GET http://localhost:6945/v1/api/customer/all
 Accept: application/json
 
+###OBTENER TODOS LOS CLIENTES PASANDO POR GATEWAY
+GET http://localhost:8181/ms-customer/v1/api/customer/all
+Accept: application/json
+
 ###OBTENER CLIENTE POR ID
 GET http://localhost:6945/v1/api/customer?customerId=1
+Accept: application/json
+
+###OBTENER CLIENTE POR ID PASANDO POR GATEWAY
+GET http://localhost:8181/ms-customer/v1/api/customer?customerId=1
 Accept: application/json
 

@@ -7,11 +7,31 @@ Content-Type: application/json
   "price": 250.50
 }
 
+### CREAR PRODUCTO PASANDO POR GATEWAY
+POST http://localhost:8181/ms-product/v1/api/product/save
+Content-Type: application/json
+
+{
+  "name": "Book",
+  "price": 250.50
+}
+
 ### LISTAR PRODUCTO
 GET http://localhost:7878/v1/api/product/all
 Accept: application/json
 
-### ACTUALIZAR PRODUCTO
-PUT http://localhost:7878/v1/api/product?productId=1
+
+### LISTAR PRODUCTO PASANDO POR GATEWAY
+GET http://localhost:8181/ms-product/v1/api/product/all
 Accept: application/json
+
+
+### ACTUALIZAR PRODUCTO
+PUT http://localhost:7878/v1/api/update/product?productId=1
+Accept: application/json
+
+### ACTUALIZAR PRODUCTO PASANDO POR GATEWAY
+PUT http://localhost:8181/ms-product/v1/api/update/product?productId=1
+Accept: application/json
+
 

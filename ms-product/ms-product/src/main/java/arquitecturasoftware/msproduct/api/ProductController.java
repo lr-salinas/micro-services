@@ -1,10 +1,14 @@
 package arquitecturasoftware.msproduct.api;
 
+import arquitecturasoftware.msproduct.config.ProductConfig;
 import arquitecturasoftware.msproduct.entity.Product;
 import arquitecturasoftware.msproduct.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
+import  arquitecturasoftware.msproduct.service.ProductService;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +18,10 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private ProductConfig productConfig;
 
     @RequestMapping(path = "/save",
                      method = RequestMethod.POST)
@@ -29,17 +37,16 @@ public class ProductController {
         return products;
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT)
-    public Product getProduct(@RequestParam Integer productId) throws Exception {
-        Optional<Product> productOptional = productRepository.findById(productId);
-        if(productOptional.isPresent()){
-            Product product = productOptional.get();
-            return product;
-        }else {
-            throw new Exception("Producto no fue encontrado");
-        }
+   /* @PutMapping("/{id}")
+    public Product updateProduct(@RequestBody Product product,
+                                  @PathVariable int id) {
+        return productService.updateProduct(id, product);
+    }*/
 
+    @PutMapping(path = "/update")
+    public void updateProduct(@RequestBody Product product) {
+
+        productService.update(product);
     }
 
 
