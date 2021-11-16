@@ -3,7 +3,10 @@ package arquitectura.software.mssale.api;
 import arquitectura.software.mssale.config.SaleConfig;
 import arquitectura.software.mssale.entity.Sale;
 import arquitectura.software.mssale.repository.SaleRepository;
-import arquitectura.software.mssale.service.SaleService;
+import arquitectura.software.mssale.service.CustomerService;
+import arquitectura.software.mssale.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -17,12 +20,36 @@ import java.util.Optional;
 @RequestMapping("/v1/api/sale")
 public class SaleController {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(SaleController.class);
+
     @Autowired
     private SaleRepository saleRepository;
     @Autowired
-    private SaleService saleService;
-    @Autowired
     private SaleConfig saleConfig;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping(path = "/testCust",
+            method = RequestMethod.GET)
+    public String testCustomer(){
+        LOGGER.info("Probando endpoint ms-customer");
+       String result = customerService.testCustomer();
+       LOGGER.info("Resultado de la invocacion: {}", result);
+        return "test customer";
+    }
+
+    @RequestMapping(path = "/testProd",
+            method = RequestMethod.GET)
+    public String testProduct(){
+        LOGGER.info("Probando endpoint ms-product");
+        String result = productService.testProduct();
+        LOGGER.info("Resultado de la invocacion: {}", result);
+        return "test product";
+    }
 
 
    @RequestMapping(path = "/buy",
@@ -32,15 +59,25 @@ public class SaleController {
        return saleRepository.save(sale);
    }
 
-    @GetMapping(path = "/{id}")
-    public Optional<Sale> getById(@PathVariable Integer id) {
-
-        return (Optional<Sale>) saleService.getById(id);
+    @RequestMapping(path = "/products",
+            method = RequestMethod.GET)
+    public List<Sale> getProducts(){
+        List<Sale> products = saleRepository.findAll();
+        return products;
     }
 
-    @DeleteMapping(path = "/delete/{id}")
-    public void deleteProduct(@PathVariable ("id") int id) {
-        saleService.delete(id);
+    @RequestMapping(
+            method = RequestMethod.DELETE)
+    public Sale deleteProduct(@RequestParam Integer saleId) throws Exception {
+        Optional<Sale> saleOptional = saleRepository.findById(saleId);
+        if(saleOptional.isPresent()){
+            Sale sale = saleOptional.get();
+            return sale;
+        }else {
+            throw new Exception("No se encuentra el producto");
+
+        }
+
     }
 
 }

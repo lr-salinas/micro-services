@@ -27,11 +27,14 @@ Accept: application/json
 
 
 ### ACTUALIZAR PRODUCTO
-PUT http://localhost:7878/v1/api/update/product?productId=1
+PUT http://localhost:7878/v1/api/product?productId=1
 Accept: application/json
 
 ### ACTUALIZAR PRODUCTO PASANDO POR GATEWAY
-PUT http://localhost:8181/ms-product/v1/api/update/product?productId=1
+PUT http://localhost:8181/ms-product/v1/api/product?productId=1
 Accept: application/json
 
+### TEST
+GET http://localhost:7878/v1/api/product/testProd
+Accept: application/json
 

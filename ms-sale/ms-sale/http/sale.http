@@ -3,15 +3,114 @@ POST http://localhost:8743/v1/api/sale/buy
 Content-Type: application/json
 
 {
-  "quantity": 1,
+  "quantity": 10,
   "status": true
 }
 
+###COMPRAR PRODUCTO PASANDO POR GATEWAY
+POST http://localhost:8181/ms-sale/v1/api/sale/buy
+Content-Type: application/json
+
+{
+  "quantity": 10,
+  "status": true
+}
+
+
 ###VER PRODUCTOS COMPRADOS POR UN CLIENTE
-GET http://localhost:8743/v1/api/sale/1
+GET http://localhost:8743/v1/api/sale/products
+Accept: application/json
+
+
+### VER PRODUCTOS COMPRADOS POR UN CLIENTE PASANDO POR GATEWAY
+GET http://localhost:8181/ms-sale/v1/api/sale/products
 Accept: application/json
 
 
 ###ELIMINAR PRODUCTOS COMPRADOS DE UN USUARIO
-DELETE http://localhost:8743/v1/api/sale/delete/1
+DELETE http://localhost:8743/v1/api/sale?saleId=1
+Accept: application/json
+
+### ELIMINAR PRODUCTOS  COMPRADOS DE UN USUARIO PASANDO POR GATEWAY
+DELETE http://localhost:8181/ms-sale/v1/api/sale?saleId=1
+Accept: application/json
+
+###TEST
+GET http://localhost:6945/v1/api/customer/testCust
+Accept: application/json
+
+### TEST
+GET http://localhost:7878/v1/api/product/testProd
+Accept: application/json
+
+###REGISTRAR CLIENTE
+POST http://localhost:6945/v1/api/customer/save
+Content-Type: application/json
+
+{
+  "name": "Rebeca",
+  "lastName": "Salinas",
+  "email": "rbsalinas@gmail.com"
+}
+
+###REGISTRAR CLIENTE PASANDO POR GATEWAY
+POST http://localhost:8181/ms-customer/v1/api/customer/save
+Content-Type: application/json
+
+{
+  "name": "Rebeca",
+  "lastName": "Salinas",
+  "email": "rbsalinas@gmail.com"
+}
+
+###OBTENER TODOS LOS CLIENTES
+GET http://localhost:6945/v1/api/customer/all
+Accept: application/json
+
+###OBTENER TODOS LOS CLIENTES PASANDO POR GATEWAY
+GET http://localhost:8181/ms-customer/v1/api/customer/all
+Accept: application/json
+
+###OBTENER CLIENTE POR ID
+GET http://localhost:6945/v1/api/customer?customerId=1
+Accept: application/json
+
+###OBTENER CLIENTE POR ID PASANDO POR GATEWAY
+GET http://localhost:8181/ms-customer/v1/api/customer?customerId=1
+Accept: application/json
+
+### CREAR PRODUCTO
+POST http://localhost:7878/v1/api/product/save
+Content-Type: application/json
+
+{
+  "name": "Book",
+  "price": 250.50
+}
+
+### CREAR PRODUCTO PASANDO POR GATEWAY
+POST http://localhost:8181/ms-product/v1/api/product/save
+Content-Type: application/json
+
+{
+  "name": "Book",
+  "price": 250.50
+}
+
+### LISTAR PRODUCTO
+GET http://localhost:7878/v1/api/product/all
+Accept: application/json
+
+
+### LISTAR PRODUCTO PASANDO POR GATEWAY
+GET http://localhost:8181/ms-product/v1/api/product/all
+Accept: application/json
+
+
+### ACTUALIZAR PRODUCTO
+PUT http://localhost:7878/v1/api/product?productId=1
+Accept: application/json
+
+### ACTUALIZAR PRODUCTO PASANDO POR GATEWAY
+PUT http://localhost:8181/ms-product/v1/api/product?productId=1
 Accept: application/json
