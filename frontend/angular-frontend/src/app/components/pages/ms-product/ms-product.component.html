@@ -1,0 +1,17 @@
+<div class="container py-5 text-center">
+  <div class="row row-cols-1 row-cols-md-3 g-4 card-deck">
+    <div class="col" *ngFor="let product of  product">
+      <div class="card h-100">
+
+        <div class="card-body">
+          <h4 class="card-title"><strong>#: {{product.productId}</strong></h4>
+          <p class="card-text">
+            <strong>Producto:</strong> {{product.name}}<br>
+           <strong>Precio: </strong> {{ product.price }}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

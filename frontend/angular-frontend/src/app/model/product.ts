@@ -1,0 +1,11 @@
+export class Product{
+  productId: number=0;
+  name: string="";
+  price: number=0;
+
+  constructor(productId:number, name:string, price:number){
+    this.productId=productId;
+    this.name=name;
+    this.price=price;
+  }
+}

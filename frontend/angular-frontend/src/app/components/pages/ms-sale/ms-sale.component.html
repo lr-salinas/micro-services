@@ -1,0 +1,18 @@
+<div class="container py-5 text-center">
+  <div class="row row-cols-1 row-cols-md-3 g-4 card-deck">
+    <div class="col" *ngFor="let sale of sale">
+      <div class="card h-100">
+
+        <div class="card-body">
+          <h4 class="card-title"><strong>#: {{sale.saleId}</strong></h4>
+          <p class="card-text">
+            <strong>Cantidad:</strong> {{sale.quantity}}<br>
+           <strong>Estado: </strong> {{ sale.status}}
+
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
