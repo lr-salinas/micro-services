@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>arquitectura-software</groupId>
 	<artifactId>ms-product</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.3u</version>
 	<name>ms-product</name>
 	<description>Demo project for ms-product</description>
 	<properties>

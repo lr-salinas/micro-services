@@ -1,0 +1,24 @@
+version: "2.4"
+networks:
+#  software:
+#    name: network-projects
+#    external: true
+  software:
+    name: network-config-server
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.27.0.0/16
+          gateway: 172.27.0.1
+services:
+  ms-config-server:
+    image: ms-config-server:0.0.1
+    mem_limit: 200m
+    networks:
+      - software
+    ports:
+      - "8889:8889"
+    environment:
+      - "EUREKA_URI=http://ms-discovery:8762/eureka"
+    volumes:
+      - "/opt/local/logs:/opt/arquitectura/logs"

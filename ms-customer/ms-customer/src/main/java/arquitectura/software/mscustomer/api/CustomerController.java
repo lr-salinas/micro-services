@@ -30,7 +30,9 @@ public class CustomerController {
     @RequestMapping(path = "/testCust",
                     method = RequestMethod.GET)
     public String testCustomer(){
-        LOGGER.info("Iniciando prueba customer");
+        LOGGER.error("Error LOGGER");
+        LOGGER.warn("WARN LOGGER");
+        LOGGER.info("Probando endpoint ms-customer");
         return "test customer";
     }
 
@@ -38,12 +40,15 @@ public class CustomerController {
                     method = RequestMethod.POST)
     public Customer saveCustomer (@RequestBody Customer customer){
      //   System.out.println("Registrando cliente-->" + customerConfig.showConfiguration());
+        LOGGER.info("Iniciando proceso para registrar cliente: con los siguientes datos, {}",
+               customer, customerConfig.showConfiguration());
         return customerRepository.save(customer);
     }
 
     @RequestMapping(path = "/all",
             method = RequestMethod.GET)
     public List<Customer> getAllCustomer(){
+        LOGGER.info("Iniciando peticion para obtener todos los clientes.");
         List<Customer> customers = customerRepository.findAll();
         return customers;
     }
@@ -51,6 +56,7 @@ public class CustomerController {
     @RequestMapping(
             method = RequestMethod.GET)
     public Customer getCustomer(@RequestParam Integer customerId) throws Exception {
+        LOGGER.info("Iniciando peticion para obtener informacion de un cliente {}", customerId);
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
         if(customerOptional.isPresent()){
             Customer customer = customerOptional.get();

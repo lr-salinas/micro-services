@@ -46,6 +46,8 @@ public class SaleController {
     @RequestMapping(path = "/testProd",
             method = RequestMethod.GET)
     public String testProduct(){
+        LOGGER.error("Error LOGGER");
+        LOGGER.warn("WARN LOGGER");
         LOGGER.info("Probando endpoint ms-product");
         String result = productService.testProduct();
         LOGGER.info("Resultado de la invocacion: {}", result);
@@ -56,13 +58,15 @@ public class SaleController {
    @RequestMapping(path = "/buy",
            method = RequestMethod.POST)
    public Sale saveSale(@RequestBody Sale sale){
-
+       LOGGER.info("Iniciando proceso para comprar producto",
+               sale, saleConfig.showConfiguration());
        return saleRepository.save(sale);
    }
 
     @RequestMapping(path = "/products",
             method = RequestMethod.GET)
     public List<Sale> getProducts(){
+        LOGGER.info("Iniciando peticion para obtener todos los productos.");
         List<Sale> products = saleRepository.findAll();
         return products;
     }
@@ -70,6 +74,7 @@ public class SaleController {
     @RequestMapping(
             method = RequestMethod.DELETE)
     public Sale deleteProduct(@RequestParam Integer saleId) throws Exception {
+        LOGGER.info("Iniciando peticion para eliminar un producto{}", saleId);
         Optional<Sale> saleOptional = saleRepository.findById(saleId);
         if(saleOptional.isPresent()){
             Sale sale = saleOptional.get();

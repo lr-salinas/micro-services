@@ -1,3 +1,9 @@
+#GET http://localhost:8181/ms-customer/v1/api/customer/test
+GET http://localhost:8181/ms-product/v1/api/product/test
+Accept: application/json
+### REFRESH ACTUATOR
+POST http://localhost:6945/actuator/refresh
+
 ###REGISTRAR CLIENTE
 POST http://localhost:6945/v1/api/customer/save
 Content-Type: application/json

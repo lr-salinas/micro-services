@@ -29,13 +29,17 @@ public class ProductController {
     @RequestMapping(path = "/testProd",
             method = RequestMethod.GET)
     public String testProduct(){
-        LOGGER.info("Iniciando prueba product");
+        LOGGER.error("Error LOGGER");
+        LOGGER.warn("WARN LOGGER");
+        LOGGER.info("Probando endpoint ms-product");
         return "test product";
     }
 
     @RequestMapping(path = "/save",
                      method = RequestMethod.POST)
     public Product saveProduct (@RequestBody Product product){
+        LOGGER.info("Iniciando proceso para registrar productos: con los siguientes datos, {}",
+                product, productConfig.showConfiguration());
 
         return productRepository.save(product);
     }
@@ -43,6 +47,7 @@ public class ProductController {
     @RequestMapping(path = "/all",
             method = RequestMethod.GET)
     public List<Product> getAllProduct(){
+        LOGGER.info("Iniciando peticion para obtener todos los productos.");
         List<Product> products = productRepository.findAll();
         return products;
     }
@@ -52,6 +57,7 @@ public class ProductController {
     @RequestMapping(
             method = RequestMethod.PUT)
     public Product updateProduct(@RequestParam Integer productId) throws Exception {
+        LOGGER.info("Iniciando peticion para actualizar un producto {}",  productId);
         Optional<Product> productOptional = productRepository.findById(productId);
         if(productOptional.isPresent()){
             Product product = productOptional.get();

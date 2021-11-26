@@ -9,3 +9,12 @@ spring:
           default-label: "main"
 server:
   port: 8889
+encrypt:
+  key: eqtwOAKk0BR6bp1n2QjWNbX11tPnoV
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8762/eureka}
